@@ -1,4 +1,4 @@
-import { Controller, Get, Route, SuccessResponse, Response, TsoaResponse, Res } from '@tsoa/runtime';
+import { Controller, Get, Route, SuccessResponse, Response, TsoaResponse, Res } from '@mathfalcon/tsoa-runtime';
 
 /**
  * response header's description

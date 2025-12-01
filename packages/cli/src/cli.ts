@@ -2,13 +2,13 @@
 import YAML from 'yaml';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { Config, RoutesConfig, SpecConfig, Tsoa } from '@tsoa/runtime';
+import { Config, RoutesConfig, SpecConfig, Tsoa } from '@mathfalcon/tsoa-runtime';
 import { MetadataGenerator } from './metadataGeneration/metadataGenerator';
 import { generateRoutes } from './module/generate-routes';
 import { generateSpec } from './module/generate-spec';
 import { fsExists, fsReadFile } from './utils/fs';
 import { AbstractRouteGenerator } from './routeGeneration/routeGenerator';
-import { extname,isAbsolute } from 'node:path';
+import { extname, isAbsolute } from 'node:path';
 import type { CompilerOptions } from 'typescript';
 
 const workingDir: string = process.cwd();
@@ -54,7 +54,7 @@ const isJsExtension = (extension: string): boolean => extension === '.js' || ext
 const getConfig = async (configPath = 'tsoa.json'): Promise<Config> => {
   let config: Config;
   const ext = extname(configPath);
-  const configFullPath = isAbsolute(configPath) ? configPath : `${workingDir}/${configPath}`
+  const configFullPath = isAbsolute(configPath) ? configPath : `${workingDir}/${configPath}`;
   try {
     if (isYamlExtension(ext)) {
       const configRaw = await fsReadFile(configFullPath);
@@ -100,7 +100,7 @@ export interface ExtendedSpecConfig extends SpecConfig {
 
 export const validateSpecConfig = async (config: Config): Promise<ExtendedSpecConfig> => {
   if (!config.spec) {
-    throw new Error('Missing spec: configuration must contain spec. Spec used to be called swagger in previous versions of tsoa.');
+    throw new Error('Missing spec: configuration must contain spec. Spec used to be called swagger in previous versions of @mathfalcon/tsoa.');
   }
   if (!config.spec.outputDirectory) {
     throw new Error('Missing outputDirectory: configuration must contain output directory.');
@@ -109,7 +109,7 @@ export const validateSpecConfig = async (config: Config): Promise<ExtendedSpecCo
     throw new Error('Missing entryFile and controllerPathGlobs: Configuration must contain an entry point file or controller path globals.');
   }
   if (!!config.entryFile && !(await fsExists(config.entryFile))) {
-    throw new Error(`EntryFile not found: ${config.entryFile} - please check your tsoa config.`);
+    throw new Error(`EntryFile not found: ${config.entryFile} - please check your @mathfalcon/tsoa config.`);
   }
   config.spec.version = config.spec.version || (await versionDefault());
 
@@ -193,7 +193,7 @@ const validateRoutesConfig = async (config: Config): Promise<ExtendedRoutesConfi
     throw new Error('Missing entryFile and controllerPathGlobs: Configuration must contain an entry point file or controller path globals.');
   }
   if (!!config.entryFile && !(await fsExists(config.entryFile))) {
-    throw new Error(`EntryFile not found: ${config.entryFile} - Please check your tsoa config.`);
+    throw new Error(`EntryFile not found: ${config.entryFile} - Please check your @mathfalcon/tsoa config.`);
   }
   if (!config.routes.routesDir) {
     throw new Error('Missing routesDir: Configuration must contain a routes file output directory.');
@@ -314,7 +314,7 @@ if (require.main === module) {
       await runCLI();
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.error('tsoa cli error:\n', err);
+      console.error('@mathfalcon/tsoa cli error:\n', err);
       process.exit(1);
     }
   })();

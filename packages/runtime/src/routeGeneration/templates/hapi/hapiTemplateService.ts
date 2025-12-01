@@ -8,7 +8,7 @@ import { ValidateError } from '../../templateHelpers';
 import { TemplateService } from '../templateService';
 import { AdditionalProps } from '../../additionalProps';
 
-const hapiTsoaResponsed = Symbol('@tsoa:template_service:hapi:responsed');
+const hapiTsoaResponsed = Symbol('@@mathfalcon/tsoa:template_service:hapi:responsed');
 
 type HapiApiHandlerParameters = {
   methodName: string;

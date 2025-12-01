@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { ExtendedRoutesConfig } from '../cli';
-import { Tsoa, TsoaRoute, assertNever } from '@tsoa/runtime';
+import { Tsoa, TsoaRoute, assertNever } from '@mathfalcon/tsoa-runtime';
 import { isRefType } from '../utils/internalTypeGuards';
 import { convertBracesPathParams, normalisePath } from '../utils/pathUtils';
 import { fsExists, fsReadFile } from '../utils/fs';
@@ -75,7 +75,7 @@ export abstract class AbstractRouteGenerator<Config extends ExtendedRoutesConfig
     const authenticationModule = this.options.authenticationModule ? this.getRelativeImportPath(this.options.authenticationModule) : undefined;
     const iocModule = this.options.iocModule ? this.getRelativeImportPath(this.options.iocModule) : undefined;
 
-    // Left in for backwards compatibility, previously if we're working locally then tsoa runtime code wasn't an importable module but now it is.
+    // Left in for backwards compatibility, previously if we're working locally then @mathfalcon/tsoa runtime code wasn't an importable module but now it is.
     const canImportByAlias = true;
 
     const normalisedBasePath = normalisePath(this.options.basePath as string, '/');

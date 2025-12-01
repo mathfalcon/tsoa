@@ -1,5 +1,5 @@
-// This file is designed to contain functions that narrow the input type to a type within src\metadataGeneration\tsoa.ts
-import { Tsoa, assertNever } from '@tsoa/runtime';
+// This file is designed to contain functions that narrow the input type to a type within src\metadataGeneration\@mathfalcon/tsoa.ts
+import { Tsoa, assertNever } from '@mathfalcon/tsoa-runtime';
 
 /**
  * This will help us do exhaustive matching against only reference types. For example, once you have narrowed the input, you don't then have to check the case where it's a `integer` because it never will be.

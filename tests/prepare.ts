@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import { dim, green } from 'chalk';
-import { generateSpecAndRoutes, generateRoutes } from '@tsoa/cli';
+import { generateSpecAndRoutes, generateRoutes } from '@mathfalcon/tsoa-cli';
 import { Timer } from './utils/timer';
 import { tmpdir } from 'node:os';
 
 const spec = async () => {
   const result = await generateSpecAndRoutes({
-    configuration: 'tsoa.json',
+    configuration: '@mathfalcon/tsoa.json',
   });
   return result;
 };
@@ -173,7 +173,7 @@ const log = async <T>(label: string, fn: () => Promise<T>) => {
           basePath: '/v1',
           entryFile: './fixtures/custom/server.ts',
           middleware: 'express',
-          middlewareTemplate: './fixtures/custom/custom-tsoa-template.ts.hbs',
+          middlewareTemplate: './fixtures/custom/custom-@mathfalcon/tsoa-template.ts.hbs',
           routesDir: './fixtures/custom',
           routesFileName: 'customRoutes.ts',
         },

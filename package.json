@@ -1,5 +1,5 @@
 {
-  "name": "tsoa-monorepo",
+  "name": "@mathfalcon/tsoa-monorepo",
   "description": "Build swagger-compliant REST APIs using TypeScript and Node",
   "private": true,
   "keywords": [
@@ -60,7 +60,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukeautry/tsoa.git"
+    "url": "https://github.com/lukeautry/@mathfalcon/tsoa.git"
   },
   "engines": {
     "yarn": ">=1.9.4",

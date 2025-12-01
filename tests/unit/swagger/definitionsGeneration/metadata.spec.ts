@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import 'mocha';
-import { MetadataGenerator } from '@tsoa/cli/metadataGeneration/metadataGenerator';
-import { Tsoa } from '@tsoa/runtime';
-import { SpecGenerator2 } from '@tsoa/cli/swagger/specGenerator2';
+import { MetadataGenerator } from '@mathfalcon/tsoa-cli/metadataGeneration/metadataGenerator';
+import { Tsoa } from '@mathfalcon/tsoa-runtime';
+import { SpecGenerator2 } from '@mathfalcon/tsoa-cli/swagger/specGenerator2';
 import { getDefaultExtendedOptions } from '../../../fixtures/defaultOptions';
 
 describe('Metadata generation', () => {
@@ -18,7 +18,7 @@ describe('Metadata generation', () => {
     it('should fail if there are no controllers', () => {
       expect(() => {
         new MetadataGenerator('./fixtures/controllers/noController.ts').Generate();
-      }).to.throw('no controllers found, check tsoa configuration');
+      }).to.throw('no controllers found, check @mathfalcon/tsoa configuration');
     });
   });
 

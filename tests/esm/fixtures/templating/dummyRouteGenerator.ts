@@ -1,4 +1,4 @@
-import { AbstractRouteGenerator } from '@tsoa/cli';
+import { AbstractRouteGenerator } from '@mathfalcon/tsoa-cli';
 
 export class DummyRouteGenerator extends AbstractRouteGenerator<any> {
   private static CALL_COUNT = 0;

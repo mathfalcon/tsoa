@@ -1,11 +1,12 @@
 import type { TypeAliasDeclaration, Type } from 'typescript';
-import { Tsoa } from '@tsoa/runtime';
+import { Tsoa } from '@mathfalcon/tsoa-runtime';
 
 import { Transformer } from './transformer';
 import { EnumTransformer } from './enumTransformer';
 import { TypeResolver } from '../typeResolver';
 import { GenerateMetadataError } from '../exceptions';
 import { getPropertyValidators } from '../../utils/validatorUtils';
+import { isRefType } from '../../utils/internalTypeGuards';
 
 export class ReferenceTransformer extends Transformer {
   public static merge(referenceTypes: Tsoa.ReferenceType[]): Tsoa.ReferenceType {
@@ -75,13 +76,35 @@ export class ReferenceTransformer extends Transformer {
   public transform(declaration: TypeAliasDeclaration, refTypeName: string, resolver: TypeResolver, referencer?: Type): Tsoa.ReferenceType {
     const example = resolver.getNodeExample(declaration);
 
+    // Resolve the underlying type
+    let underlyingType = new TypeResolver(declaration.type, resolver.current, declaration, resolver.context, resolver.referencer || referencer).resolve();
+
+    // If the underlying type is a refAlias with a mangled name (utility type like ReturnType),
+    // unwrap it to avoid creating intermediate schemas
+    // We detect mangled names by checking if they contain encoded characters (like _40_, _41_, etc.)
+    if (isRefType(underlyingType) && underlyingType.dataType === 'refAlias') {
+      const refAlias = underlyingType as Tsoa.RefAliasType;
+      // Check if the refName looks like a mangled utility type name
+      // Mangled names typically contain patterns like _40_, _41_, -at-, etc.
+      const isMangledUtilityType = /(_\d+_|__\d+__|-at-)/.test(refAlias.refName);
+
+      if (isMangledUtilityType) {
+        // Unwrap: use the type that the utility type points to
+        underlyingType = refAlias.type;
+        // Remove the intermediate utility type from the reference type map
+        // since we're unwrapping it and using the underlying type directly
+        // This prevents creating schemas for mangled utility type names
+        resolver.current.RemoveReferenceType(refAlias.refName);
+      }
+    }
+
     const referenceType: Tsoa.ReferenceType = {
       dataType: 'refAlias',
       default: TypeResolver.getDefault(declaration),
       description: resolver.getNodeDescription(declaration),
       refName: refTypeName,
       format: resolver.getNodeFormat(declaration),
-      type: new TypeResolver(declaration.type, resolver.current, declaration, resolver.context, resolver.referencer || referencer).resolve(),
+      type: underlyingType,
       validators: getPropertyValidators(declaration) || {},
       ...(example && { example }),
     };

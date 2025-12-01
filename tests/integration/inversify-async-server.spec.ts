@@ -9,7 +9,7 @@ const basePath = '/v1';
 
 describe('Inversify async IoC Express Server', () => {
   it('can handle get request with no path argument', () => {
-    return verifyGetRequest(app, basePath + '/AsyncIocTest?tsoa=abc123456', (err, res) => {
+    return verifyGetRequest(app, basePath + '/AsyncIocTest?@mathfalcon/tsoa=abc123456', (err, res) => {
       const model = res.body as TestModel;
       expect(model.id).to.equal(1);
     });

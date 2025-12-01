@@ -6,7 +6,7 @@ import { TsoaRoute } from '../../tsoa-route';
 import { ValidateError } from '../../templateHelpers';
 import { TemplateService } from '../templateService';
 
-const koaTsoaResponsed = Symbol('@tsoa:template_service:koa:is_responsed');
+const koaTsoaResponsed = Symbol('@@mathfalcon/tsoa:template_service:koa:is_responsed');
 
 type KoaApiHandlerParameters = {
   methodName: string;

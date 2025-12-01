@@ -9,12 +9,12 @@
   - [ ] support request
 
 - I confirm that I
-  - [ ] used the [search](https://github.com/lukeautry/tsoa/search?type=Issues) to make sure that a similar issue hasn't already been submit
+  - [ ] used the [search](https://github.com/lukeautry/@mathfalcon/tsoa/search?type=Issues) to make sure that a similar issue hasn't already been submit
 
 ## Expected Behavior
 
 <!--- Tell us what should happen -->
-<!--- If this is related to swagger/OpenAPI files, then please include swagger.yaml that you wish tsoa had generated  -->
+<!--- If this is related to swagger/OpenAPI files, then please include swagger.yaml that you wish @mathfalcon/tsoa had generated  -->
 
 ```yaml
 
@@ -29,7 +29,7 @@
 ## Current Behavior
 
 <!--- Tell us what happens instead of the expected behavior -->
-<!--- If this is related to swagger/OpenAPI files, then please include swagger.yaml that tsoa actually generated  -->
+<!--- If this is related to swagger/OpenAPI files, then please include swagger.yaml that @mathfalcon/tsoa actually generated  -->
 
 ```yaml
 

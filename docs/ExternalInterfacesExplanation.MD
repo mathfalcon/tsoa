@@ -115,7 +115,7 @@ Abstraction layers are a valuable concept in programming. Here's a classic examp
 
 Let's say that `some-external-dependency` changes their method to take a different data structure.
 
-If tsoa were to update your swagger documentation to the new type, then your API consumers would get 400 BAD REQUEST errors. See here:
+If @mathfalcon/tsoa were to update your swagger documentation to the new type, then your API consumers would get 400 BAD REQUEST errors. See here:
 
 ```ts
 // node_modules/someExternalDependency/index.d.ts

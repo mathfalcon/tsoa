@@ -1,10 +1,10 @@
 import chalk from 'chalk';
-import { generateSpecAndRoutes, generateRoutes } from '@tsoa/cli';
+import { generateSpecAndRoutes, generateRoutes } from '@mathfalcon/tsoa-cli';
 import { hrtime } from 'process';
 
 const specESM = async () => {
   const result = await generateSpecAndRoutes({
-    configuration: 'tsoa.yaml',
+    configuration: '@mathfalcon/tsoa.yaml',
   });
   return result;
 };

@@ -8,7 +8,7 @@ export class RoutesStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: any) {
     super(scope, id, props);
     // Generate an API Gateway
-    const api = new apigateway.RestApi(this, "tsoa-api", {
+    const api = new apigateway.RestApi(this, "@mathfalcon/tsoa-api", {
       restApiName: "TSOA Generated Service"
     });
 
@@ -25,7 +25,7 @@ export class RoutesStack extends cdk.Stack {
       handler: "{{name}}.handler",
     });
 
-    // create an API Gateway path resource for the action using the tsoa path metadata
+    // create an API Gateway path resource for the action using the @mathfalcon/tsoa path metadata
     const resource_{{../name}}_{{name}} = this.createApiGatewayResource("{{fullPath}}", api);
 
     // attach the lamdba to the resource

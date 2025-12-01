@@ -137,7 +137,7 @@ export namespace Tsoa {
   export type PrimitiveType = StringType | BooleanType | DoubleType | FloatType | IntegerType | LongType | VoidType | UndefinedType;
 
   /**
-   * This is one of the possible objects that tsoa creates that helps the code store information about the type it found in the code.
+   * This is one of the possible objects that @mathfalcon/tsoa creates that helps the code store information about the type it found in the code.
    */
   export type Type =
     | PrimitiveType

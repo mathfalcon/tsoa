@@ -1,6 +1,6 @@
 type Middleware<T extends CallableFunction | object> = T;
 
-const TSOA_MIDDLEWARES = Symbol('@tsoa:middlewares');
+const TSOA_MIDDLEWARES = Symbol('@@mathfalcon/tsoa:middlewares');
 
 /**
  * Helper function to create a decorator

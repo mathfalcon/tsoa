@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 import { ValidationService, FieldErrors } from '../../../packages/runtime/src/routeGeneration/templateHelpers';
-import { TsoaRoute } from '../../../packages/runtime/src/routeGeneration/tsoa-route';
+import { TsoaRoute } from '../../../packages/runtime/src/routeGeneration/@mathfalcon/tsoa-route';
 
 describe('Validation Errors', () => {
   describe('Large Union Types', () => {

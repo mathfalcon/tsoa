@@ -2,11 +2,11 @@ import 'mocha';
 
 import { expect } from 'chai';
 
-import { MetadataGenerator } from '@tsoa/cli/metadataGeneration/metadataGenerator';
-import { SpecGenerator2 } from '@tsoa/cli/swagger/specGenerator2';
+import { MetadataGenerator } from '@mathfalcon/tsoa-cli/metadataGeneration/metadataGenerator';
+import { SpecGenerator2 } from '@mathfalcon/tsoa-cli/swagger/specGenerator2';
 import { getDefaultExtendedOptions } from '../../fixtures/defaultOptions';
-import { Swagger, Tsoa } from '@tsoa/runtime';
-import { ExtendedSpecConfig } from '@tsoa/cli/cli';
+import { Swagger, Tsoa } from '@mathfalcon/tsoa-runtime';
+import { ExtendedSpecConfig } from '@mathfalcon/tsoa-cli/cli';
 
 describe('Schema details generation', () => {
   const metadataGet = new MetadataGenerator('./fixtures/controllers/getController.ts').Generate();
@@ -150,8 +150,8 @@ describe('Schema details generation', () => {
   describe('paths', () => {
     describe('uploadedFiles', () => {
       /**
-       * Test according to tsoa docs
-       * @link https://tsoa-community.github.io/docs/file-upload.html
+       * Test according to @mathfalcon/tsoa docs
+       * @link https://@mathfalcon/tsoa-community.github.io/docs/file-upload.html
        * Validated and tested GUI with swagger.io
        * @link https://editor.swagger.io/
        */

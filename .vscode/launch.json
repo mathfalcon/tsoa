@@ -35,7 +35,7 @@
       "name": "Generate",
       "type": "node",
       "request": "launch",
-      "args": ["${workspaceRoot}/packages/tsoa/src/cli.ts", "swagger"],
+      "args": ["${workspaceRoot}/packages/@mathfalcon/tsoa/src/cli.ts", "swagger"],
       "cwd": "${workspaceRoot}/tests",
       "preLaunchTask": "build",
       "runtimeArgs": ["--require", "ts-node/register", "--require", "tsconfig-paths/register"],

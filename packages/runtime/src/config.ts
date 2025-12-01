@@ -23,7 +23,7 @@ export interface Config {
   entryFile: string;
 
   /**
-   * An array of path globs that point to your route controllers that you would like to have tsoa include.
+   * An array of path globs that point to your route controllers that you would like to have @mathfalcon/tsoa include.
    */
   controllerPathGlobs?: string[];
 
@@ -63,7 +63,7 @@ export interface Config {
 }
 
 /**
- * these options will be removed in a future version since we would prefer consumers to explicitly state their preference that the tsoa validation throws or removes additional properties
+ * these options will be removed in a future version since we would prefer consumers to explicitly state their preference that the @mathfalcon/tsoa validation throws or removes additional properties
  */
 export type DeprecatedOptionForAdditionalPropertiesHandling = true | false;
 

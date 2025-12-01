@@ -1,4 +1,4 @@
-import { Controller, Get, Route, Response, Hidden } from '@tsoa/runtime';
+import { Controller, Get, Route, Response, Hidden } from '@mathfalcon/tsoa-runtime';
 
 interface ToHideModel {
   something: string;

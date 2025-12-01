@@ -1,4 +1,4 @@
-import { Config, Tsoa } from '@tsoa/runtime';
+import { Config, Tsoa } from '@mathfalcon/tsoa-runtime';
 import { minimatch } from 'minimatch';
 import { createProgram, forEachChild, isClassDeclaration, type ClassDeclaration, type CompilerOptions, type Program, type TypeChecker } from 'typescript';
 import { getDecorators } from '../utils/decoratorUtils';
@@ -223,6 +223,10 @@ export class MetadataGenerator {
     return this.referenceTypeMap[refName];
   }
 
+  public RemoveReferenceType(refName: string) {
+    delete this.referenceTypeMap[refName];
+  }
+
   public CheckModelUnicity(refName: string, positions: Array<{ fileName: string; pos: number }>) {
     if (!this.modelDefinitionPosMap[refName]) {
       this.modelDefinitionPosMap[refName] = positions;
@@ -246,7 +250,7 @@ export class MetadataGenerator {
 
   private buildControllers() {
     if (this.controllerNodes.length === 0) {
-      throw new Error('no controllers found, check tsoa configuration');
+      throw new Error('no controllers found, check @mathfalcon/tsoa configuration');
     }
     return this.controllerNodes
       .map(classDeclaration => new ControllerGenerator(classDeclaration, this, this.rootSecurity))

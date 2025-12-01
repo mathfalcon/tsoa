@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import * as fs from 'fs';
 import * as handlebars from 'handlebars';
-import { ExtendedRoutesConfig } from '@tsoa/cli/src/cli';
-import { Tsoa, TsoaRoute, assertNever } from '@tsoa/runtime';
-import { fsReadFile, fsWriteFile, fsExists, fsMkDir } from '@tsoa/cli/src/utils/fs';
-import { AbstractRouteGenerator } from '@tsoa/cli/src/routeGeneration/routeGenerator';
+import { ExtendedRoutesConfig } from '@mathfalcon/tsoa-cli/src/cli';
+import { Tsoa, TsoaRoute, assertNever } from '@mathfalcon/tsoa-runtime';
+import { fsReadFile, fsWriteFile, fsExists, fsMkDir } from '@mathfalcon/tsoa-cli/src/utils/fs';
+import { AbstractRouteGenerator } from '@mathfalcon/tsoa-cli/src/routeGeneration/routeGenerator';
 import path = require('path');
 
 export interface ServerlessRoutesConfig extends ExtendedRoutesConfig {
@@ -74,7 +74,7 @@ export default class ServerlessRouteGenerator extends AbstractRouteGenerator<Ser
    * @returns
    */
   async generateStack(): Promise<void> {
-    // This would need to generate a CDK "Stack" that takes the tsoa metadata as input and generates a valid serverless CDK infrastructure stack from template
+    // This would need to generate a CDK "Stack" that takes the @mathfalcon/tsoa metadata as input and generates a valid serverless CDK infrastructure stack from template
     const templateFileName = this.options.stackTemplate;
     const fileName = `${this.options.routesDir}/stack.ts`;
     const context = this.buildContext();

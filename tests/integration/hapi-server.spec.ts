@@ -1,4 +1,4 @@
-import { File } from '@tsoa/runtime';
+import { File } from '@mathfalcon/tsoa-runtime';
 import { expect } from 'chai';
 import { readFileSync } from 'fs';
 import 'mocha';
@@ -1147,9 +1147,9 @@ describe('Hapi Server', () => {
       );
     });
 
-    describe('API key or tsoa auth', () => {
+    describe('API key or @mathfalcon/tsoa auth', () => {
       it('returns 200 if the API key is correct', () => {
-        const path = '/SecurityTest/OauthOrApiKey?access_token=abc123456&tsoa=invalid';
+        const path = '/SecurityTest/OauthOrApiKey?access_token=abc123456&@mathfalcon/tsoa=invalid';
         return verifyGetRequest(
           app,
           basePath + path,
@@ -1161,18 +1161,18 @@ describe('Hapi Server', () => {
         );
       });
 
-      it('returns 200 if tsoa auth is correct', () => {
-        const path = '/SecurityTest/OauthOrApiKey?access_token=invalid&tsoa=abc123456';
+      it('returns 200 if @mathfalcon/tsoa auth is correct', () => {
+        const path = '/SecurityTest/OauthOrApiKey?access_token=invalid&@mathfalcon/tsoa=abc123456';
         return verifyGetRequest(app, basePath + path, emptyHandler, 200);
       });
 
       it('returns 200 if multiple auth handlers are correct', () => {
-        const path = '/SecurityTest/OauthOrApiKey?access_token=abc123456&tsoa=abc123456';
+        const path = '/SecurityTest/OauthOrApiKey?access_token=abc123456&@mathfalcon/tsoa=abc123456';
         return verifyGetRequest(app, basePath + path, emptyHandler, 200);
       });
 
-      it('returns 401 if neither API key nor tsoa auth are correct, last error to resolve is returned', () => {
-        const path = '/SecurityTest/OauthOrApiKey?access_token=invalid&tsoa=invalid';
+      it('returns 401 if neither API key nor @mathfalcon/tsoa auth are correct, last error to resolve is returned', () => {
+        const path = '/SecurityTest/OauthOrApiKey?access_token=invalid&@mathfalcon/tsoa=invalid';
         return verifyGetRequest(
           app,
           basePath + path,
@@ -1195,9 +1195,9 @@ describe('Hapi Server', () => {
       });
     });
 
-    describe('API key and tsoa auth', () => {
-      it('returns 200 if API and tsoa auth are correct, resolved with user from first key in object', () => {
-        const path = '/SecurityTest/OauthAndApiKey?access_token=abc123456&tsoa=abc123456';
+    describe('API key and @mathfalcon/tsoa auth', () => {
+      it('returns 200 if API and @mathfalcon/tsoa auth are correct, resolved with user from first key in object', () => {
+        const path = '/SecurityTest/OauthAndApiKey?access_token=abc123456&@mathfalcon/tsoa=abc123456';
         return verifyGetRequest(
           app,
           basePath + path,
@@ -1210,19 +1210,19 @@ describe('Hapi Server', () => {
       });
 
       it('returns 401 if API key is incorrect', () => {
-        const path = '/SecurityTest/OauthAndApiKey?access_token=abc123456&tsoa=invalid';
+        const path = '/SecurityTest/OauthAndApiKey?access_token=abc123456&@mathfalcon/tsoa=invalid';
         return verifyGetRequest(app, basePath + path, emptyHandler, 401);
       });
 
-      it('returns 401 if tsoa auth is incorrect', () => {
-        const path = '/SecurityTest/OauthAndApiKey?access_token=invalid&tsoa=abc123456';
+      it('returns 401 if @mathfalcon/tsoa auth is incorrect', () => {
+        const path = '/SecurityTest/OauthAndApiKey?access_token=invalid&@mathfalcon/tsoa=abc123456';
         return verifyGetRequest(app, basePath + path, emptyHandler, 401);
       });
 
       it('should pass through error if controller method crashes', () => {
         return verifyGetRequest(
           app,
-          basePath + `/SecurityTest/ServerErrorOauthAndApiKey?access_token=abc123456&tsoa=abc123456`,
+          basePath + `/SecurityTest/ServerErrorOauthAndApiKey?access_token=abc123456&@mathfalcon/tsoa=abc123456`,
           (_err, res) => {
             expect(res.status).to.equal(500);
           },
@@ -1614,7 +1614,7 @@ describe('Hapi Server', () => {
     it('can post multiple files with different array fields', () => {
       const formData = {
         files_a: ['@../package.json', '@../tsconfig.json'],
-        file_b: '@../tsoa.json',
+        file_b: '@../@mathfalcon/tsoa.json',
         files_c: ['@../tsconfig.json', '@../package.json'],
       };
       return verifyFileUploadRequest(app, `${basePath}/PostTest/ManyFilesInDifferentArrayFields`, formData, (_err, res) => {

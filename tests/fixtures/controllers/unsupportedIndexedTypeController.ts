@@ -1,4 +1,4 @@
-import { Get, Route } from '@tsoa/runtime';
+import { Get, Route } from '@mathfalcon/tsoa-runtime';
 import { ForeignIndexedValue } from '../testModel';
 
 @Route('UnsupportedIndexedType')

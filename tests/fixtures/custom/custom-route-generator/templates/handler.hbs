@@ -1,10 +1,10 @@
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+// WARNING: This file was auto-generated with @mathfalcon/tsoa. Please do not modify it. Re-run @mathfalcon/tsoa to re-generate this file: https://github.com/lukeautry/@mathfalcon/tsoa
 import { {{controller.name}} } from '.{{controller.modulePath}}';
 
 import { getValidatedArgs } from '.{{modelsFileName}}';
 {{#if iocModule}}
 import { iocContainer } from '{{iocModule}}';
-import { IocContainer, IocContainerFactory } from '@tsoa/runtime';
+import { IocContainer, IocContainerFactory } from '@mathfalcon/tsoa-runtime';
 {{/if}}
 
 {{#if iocModule}}
@@ -32,7 +32,7 @@ export async function handler(event, context) {
         {{/each}}
     };
 
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    // WARNING: This file was auto-generated with @mathfalcon/tsoa. Please do not modify it. Re-run @mathfalcon/tsoa to re-generate this file: https://github.com/lukeautry/@mathfalcon/tsoa
 
     let validatedArgs: any[] = [];
     try {

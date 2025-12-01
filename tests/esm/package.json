@@ -1,8 +1,8 @@
 {
-  "name": "tsoa-tests-esm",
+  "name": "@mathfalcon/tsoa-tests-esm",
   "private": true,
   "description": "Build swagger-compliant REST APIs using TypeScript and Node",
-  "version": "6.6.1",
+  "version": "6.6.2",
   "type": "module",
   "sideEffects": false,
   "scripts": {
@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukeautry/tsoa.git"
+    "url": "https://github.com/lukeautry/@mathfalcon/tsoa.git"
   },
   "engines": {
     "yarn": ">=1.9.4",

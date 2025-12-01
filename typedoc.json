@@ -2,7 +2,7 @@
   "$schema": "https://typedoc.org/schema.json",
   "entryPointStrategy": "packages",
   "entryPoints": ["packages/*"],
-  "name": "tsoa",
+  "name": "@mathfalcon/tsoa",
   "includeVersion": true,
   "out": "./.typedoc"
 }

@@ -1,7 +1,7 @@
-import { ExtendedSpecConfig } from '@tsoa/cli/cli';
-import { MetadataGenerator } from '@tsoa/cli/metadataGeneration/metadataGenerator';
-import { SpecGenerator2 } from '@tsoa/cli/swagger/specGenerator2';
-import { Swagger } from '@tsoa/runtime';
+import { ExtendedSpecConfig } from '@mathfalcon/tsoa-cli/cli';
+import { MetadataGenerator } from '@mathfalcon/tsoa-cli/metadataGeneration/metadataGenerator';
+import { SpecGenerator2 } from '@mathfalcon/tsoa-cli/swagger/specGenerator2';
+import { Swagger } from '@mathfalcon/tsoa-runtime';
 import { expect } from 'chai';
 import 'mocha';
 import * as os from 'os';
@@ -3565,7 +3565,7 @@ describe('Definition generation', () => {
 
           expect(property).not.to.haveOwnProperty(
             'additionalProperties',
-            'since JSON does not support properties on Arrays. JS does, but since tsoa validates JSON that come accross the wire, we do not need validate an impossible condition',
+            'since JSON does not support properties on Arrays. JS does, but since @mathfalcon/tsoa validates JSON that come accross the wire, we do not need validate an impossible condition',
           );
 
           if (!property.items) {
@@ -3601,7 +3601,7 @@ describe('Definition generation', () => {
 
           expect(property).not.to.haveOwnProperty(
             'additionalProperties',
-            'since JSON does not support properties on Arrays. JS does, but since tsoa validates JSON that come accross the wire, we do not need validate an impossible condition',
+            'since JSON does not support properties on Arrays. JS does, but since @mathfalcon/tsoa validates JSON that come accross the wire, we do not need validate an impossible condition',
           );
 
           if (!property.items) {

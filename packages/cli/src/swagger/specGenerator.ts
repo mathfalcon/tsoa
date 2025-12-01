@@ -1,5 +1,5 @@
 import { ExtendedSpecConfig } from '../cli';
-import { Tsoa, assertNever, Swagger } from '@tsoa/runtime';
+import { Tsoa, assertNever, Swagger } from '@mathfalcon/tsoa-runtime';
 import * as handlebars from 'handlebars';
 
 export abstract class SpecGenerator {

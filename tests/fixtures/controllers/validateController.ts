@@ -1,4 +1,4 @@
-import { Body, BodyProp, Get, Post, Query, Route } from '@tsoa/runtime';
+import { Body, BodyProp, Get, Post, Query, Route } from '@mathfalcon/tsoa-runtime';
 import { ValidateMapStringToAny, ValidateMapStringToNumber, ValidateModel } from './../testModel';
 
 export interface ValidateDateResponse {

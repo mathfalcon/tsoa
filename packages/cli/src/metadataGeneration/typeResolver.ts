@@ -1,4 +1,4 @@
-import { assertNever, Tsoa } from '@tsoa/runtime';
+import { assertNever, Tsoa } from '@mathfalcon/tsoa-runtime';
 import * as ts from 'typescript';
 import { safeFromJson } from '../utils/jsonUtils';
 import { getDecorators, getNodeFirstDecoratorValue, isDecorator } from './../utils/decoratorUtils';
@@ -487,6 +487,27 @@ export class TypeResolver {
           return new TypeResolver(typeArguments[0], current, parentNode, context).resolve();
         }
         break;
+      case 'ReturnType':
+        // Special-case ReturnType<typeof SomeFunction> so we don't walk into
+        // TypeScript's internal helper types (e.g. FirstNode) which TSOA can't model.
+        // Instead, ask the type checker directly for the function's return type.
+        if (typeArguments && typeArguments.length === 1 && ts.isTypeQueryNode(typeArguments[0])) {
+          const queriedExpr = typeArguments[0].exprName;
+
+          // Get the type of the queried expression (e.g. typeof NotifyService.handleOneTimeNotification)
+          const fnType = current.typeChecker.getTypeAtLocation(queriedExpr);
+          const signatures = fnType.getCallSignatures();
+
+          if (signatures.length > 0) {
+            const sig = signatures[0];
+            const returnType = current.typeChecker.getReturnTypeOfSignature(sig);
+
+            const returnTypeNode = current.typeChecker.typeToTypeNode(returnType, undefined, ts.NodeBuilderFlags.NoTruncation) as ts.TypeNode;
+
+            return new TypeResolver(returnTypeNode, current, parentNode, context, returnType).resolve();
+          }
+        }
+        break;
       case 'String':
         return { dataType: 'string' };
       default:
@@ -798,14 +819,15 @@ export class TypeResolver {
     if (Array.isArray(node.typeArguments)) {
       // Add typeArguments for Synthetic nodes (e.g. Record<> in TestClassModel.indexedResponse)
       const argumentsString = node.typeArguments.map(type => this.calcTypeName(type));
-      return [type, `${refTypeName}<${argumentsString.join(', ')}>`];
+      const fullName = `${refTypeName}<${argumentsString.join(', ')}>`;
+      return [type, fullName];
     }
     return [type, refTypeName];
   }
 
   private getReferenceType(node: ts.TypeReferenceType, addToRefTypeMap = true): Tsoa.ReferenceType {
     const [type, name] = this.calcTypeReferenceTypeName(node);
-    const refTypeName = this.getRefTypeName(name);
+    let refTypeName = this.getRefTypeName(name);
     this.current.CheckExpressionUnicity(refTypeName, name);
 
     this.context = this.typeArgumentsToContext(node, type);
@@ -833,6 +855,42 @@ export class TypeResolver {
           throw new GenerateMetadataError(`Could not find declarations for type '${name}'. This might be a complex generic type that needs special handling.`);
         }
 
+        // If we have a type alias declaration and no type arguments, use the alias name instead of the computed name
+        // This ensures that type aliases like "type X = ReturnType<...>" use "X" as the schema name
+        // rather than the mangled name from the expanded type expression
+        // Note: We only do this when there are no type arguments, as type arguments might be part of the alias usage
+        const typeAliasDeclaration = declarations.find(decl => ts.isTypeAliasDeclaration(decl));
+
+        if (typeAliasDeclaration && ts.isTypeAliasDeclaration(typeAliasDeclaration) && !Array.isArray(node.typeArguments)) {
+          // Get the alias name directly from the declaration and apply namespace handling
+          // This ensures we use the actual alias name even if TypeScript expanded the type
+          const aliasIdentifier = typeAliasDeclaration.name;
+          let aliasName = aliasIdentifier.text;
+
+          // Apply namespace handling similar to calcRefTypeName
+          let actNode = typeAliasDeclaration.parent;
+          let isFirst = true;
+          const isGlobalDeclaration = (mod: ts.ModuleDeclaration) => mod.name.kind === ts.SyntaxKind.Identifier && mod.name.text === 'global';
+
+          while (!ts.isSourceFile(actNode)) {
+            if (ts.isBlock(actNode)) {
+              break;
+            }
+            if (!(isFirst && ts.isEnumDeclaration(actNode)) && !ts.isModuleBlock(actNode)) {
+              throwUnless(ts.isModuleDeclaration(actNode), new GenerateMetadataError(`This node kind is unknown: ${actNode.kind}`, typeAliasDeclaration));
+
+              if (!isGlobalDeclaration(actNode)) {
+                const moduleName = actNode.name.text;
+                aliasName = `${moduleName}.${aliasName}`;
+              }
+            }
+            isFirst = false;
+            actNode = actNode.parent;
+          }
+
+          refTypeName = this.getRefTypeName(aliasName);
+        }
+
         for (const declaration of declarations) {
           if (ts.isTypeAliasDeclaration(declaration)) {
             const referencer = node.pos !== -1 ? this.current.typeChecker.getTypeFromTypeNode(node) : undefined;
@@ -847,8 +905,6 @@ export class TypeResolver {
         this.addToLocalReferenceTypeCache(name, referenceType);
         return referenceType;
       } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error(`There was a problem resolving type of '${name}'.`);
         throw err;
       }
     };

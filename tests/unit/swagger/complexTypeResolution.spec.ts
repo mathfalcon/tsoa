@@ -1,7 +1,7 @@
-import { ExtendedSpecConfig } from '@tsoa/cli/cli';
-import { MetadataGenerator } from '@tsoa/cli/metadataGeneration/metadataGenerator';
-import { SpecGenerator3 } from '@tsoa/cli/swagger/specGenerator3';
-import { Swagger } from '@tsoa/runtime';
+import { ExtendedSpecConfig } from '@mathfalcon/tsoa-cli/cli';
+import { MetadataGenerator } from '@mathfalcon/tsoa-cli/metadataGeneration/metadataGenerator';
+import { SpecGenerator3 } from '@mathfalcon/tsoa-cli/swagger/specGenerator3';
+import { Swagger } from '@mathfalcon/tsoa-runtime';
 import { expect } from 'chai';
 import 'mocha';
 import { getDefaultOptions } from '../../fixtures/defaultOptions';

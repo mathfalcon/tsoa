@@ -1,4 +1,4 @@
-import { Get, Path, Route } from '@tsoa/runtime';
+import { Get, Path, Route } from '@mathfalcon/tsoa-runtime';
 
 @Route('SubResourceTest/{mainResourceId}/SubResource')
 export class SubResourceTestController {

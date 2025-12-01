@@ -1,7 +1,7 @@
 import { SyntaxKind, getModifiers, type HasModifiers } from 'typescript';
 
 /**
- * Transformer responsible to transforming native ts node into tsoa type.
+ * Transformer responsible to transforming native ts node into @mathfalcon/tsoa type.
  */
 export abstract class Transformer {
   protected hasPublicModifier(node: HasModifiers): boolean {

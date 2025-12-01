@@ -1,4 +1,4 @@
-import { File } from '@tsoa/runtime';
+import { File } from '@mathfalcon/tsoa-runtime';
 import { expect } from 'chai';
 import { readFileSync } from 'fs';
 import 'mocha';
@@ -114,7 +114,7 @@ describe('Express Server With custom multer', () => {
     it('can post multiple files with different array fields', () => {
       const formData = {
         files_a: ['@../package.json', '@../tsconfig.json'],
-        file_b: '@../tsoa.json',
+        file_b: '@../@mathfalcon/tsoa.json',
         files_c: ['@../tsconfig.json', '@../package.json'],
       };
       return verifyFileUploadRequest(app, `${basePath}/PostTest/ManyFilesInDifferentArrayFields`, formData, (_err, res) => {

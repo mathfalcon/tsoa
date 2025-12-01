@@ -1,4 +1,4 @@
-import { Route, Get, Query, Controller } from '@tsoa/runtime';
+import { Route, Get, Query, Controller } from '@mathfalcon/tsoa-runtime';
 
 @Route('TagTest')
 export class InvalidTagController extends Controller {

@@ -2,7 +2,7 @@
 
 ## 1. Search for Duplicates
 
-[Search the existing issues](https://github.com/lukeautry/tsoa/search?type=Issues) before logging a new one.
+[Search the existing issues](https://github.com/lukeautry/@mathfalcon/tsoa/search?type=Issues) before logging a new one.
 
 Some search tips:
 
@@ -20,14 +20,14 @@ Please follow the issue template and include as much information as you can. Thi
 
 We also accept suggestions in the issue tracker.
 
-- Be sure to [search](https://github.com/lukeautry/tsoa/search?type=Issues) first for a duplicate.
-- Please ensure that your suggestion adheres to the [goals](https://github.com/lukeautry/tsoa#goal) and [philosophy](https://github.com/lukeautry/tsoa#philosophy) of the project
+- Be sure to [search](https://github.com/lukeautry/@mathfalcon/tsoa/search?type=Issues) first for a duplicate.
+- Please ensure that your suggestion adheres to the [goals](https://github.com/lukeautry/@mathfalcon/tsoa#goal) and [philosophy](https://github.com/lukeautry/@mathfalcon/tsoa#philosophy) of the project
 
 # Instructions for Contributing Code
 
 ## General
 
-If you have a bugfix or new feature that you would like to contribute to tsoa, please find or open an issue about it first. Talk about what you would like to do. It may be that somebody is already working on it, or that there are particular issues that you should know about before implementing the change.
+If you have a bugfix or new feature that you would like to contribute to @mathfalcon/tsoa, please find or open an issue about it first. Talk about what you would like to do. It may be that somebody is already working on it, or that there are particular issues that you should know about before implementing the change.
 
 We enjoy working with contributors to get their code accepted. There are many approaches to fixing a problem and it is important to find the best approach before writing too much code.
 
@@ -39,19 +39,19 @@ Your pull request should include a link to the bug that you are fixing. If you'v
  
 ## Contributing features
 
-Features (things that add new or improved functionality to tsoa) may be accepted, but will need to **first** be approved by having the (["help wanted" label](https://github.com/lukeautry/tsoa/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22) by a tsoa project maintainer) in the suggestion issue.
+Features (things that add new or improved functionality to @mathfalcon/tsoa) may be accepted, but will need to **first** be approved by having the (["help wanted" label](https://github.com/lukeautry/@mathfalcon/tsoa/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22) by a @mathfalcon/tsoa project maintainer) in the suggestion issue.
 
 Design changes will not be accepted at this time. If you have a design change proposal, please log a suggestion issue.
 
-## Information on the types of tests in tsoa
+## Information on the types of tests in @mathfalcon/tsoa
 
 ### unit tests
 
-You will find tests in `tests\unit` that test specific functions or classes within tsoa. If possible, it's ideal to add test coverage to these files since you can provide more detailed assertions about specific scenarios. These also run much more quickly. However, in some cases the only way to test tsoa (like in the case of reading a controller file) is run an integrative test. Read below:
+You will find tests in `tests\unit` that test specific functions or classes within @mathfalcon/tsoa. If possible, it's ideal to add test coverage to these files since you can provide more detailed assertions about specific scenarios. These also run much more quickly. However, in some cases the only way to test @mathfalcon/tsoa (like in the case of reading a controller file) is run an integrative test. Read below:
 
 ### integrative tests
 
-These tests read controller files (just like tsoa does for real tsoa users) (via the `tests\prepare.ts` file) and then execute API tests against the generated routes. This allows tsoa contributors to validate that all of the code is connected well and is performing the desired function. These tests take longer to run but achieve higher levels of quality assurance. A good mix of integrative tests and unit tests will surely result in a faster review process for any contribution.
+These tests read controller files (just like @mathfalcon/tsoa does for real @mathfalcon/tsoa users) (via the `tests\prepare.ts` file) and then execute API tests against the generated routes. This allows @mathfalcon/tsoa contributors to validate that all of the code is connected well and is performing the desired function. These tests take longer to run but achieve higher levels of quality assurance. A good mix of integrative tests and unit tests will surely result in a faster review process for any contribution.
 
 ## Housekeeping
 
